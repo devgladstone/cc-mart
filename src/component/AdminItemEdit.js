@@ -18,7 +18,7 @@ export default function AdminItemEdit({
   description,
   cost,
   img_url,
-  setExpanded,
+  setEditing,
 }) {
   const [state, setState] = useState({
     name: name,
@@ -31,7 +31,7 @@ export default function AdminItemEdit({
   const [, executeUpdate] = useMutation(UPDATE_ITEM);
 
   const onCancel = () => {
-    setExpanded(false);
+    setEditing(false);
     setState({
       name: name,
       description: description,
@@ -50,7 +50,7 @@ export default function AdminItemEdit({
           modified_on: new Date().toISOString(),
         },
       });
-      setExpanded(false);
+      setEditing(false);
       setLoading(false);
       alert("Item updated!");
     } catch (err) {

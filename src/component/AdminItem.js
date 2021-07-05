@@ -13,7 +13,7 @@ mutation ($id: Int!) {
 `;
 
 export default function Admin({ item }) {
-  const [expanded, setExpanded] = useState(false);
+  const [editing, setEditing] = useState(false);
   const [, executeDelete] = useMutation(DELETE_ITEM);
 
   const onDelete = async () => {
@@ -42,7 +42,7 @@ export default function Admin({ item }) {
           </h3> */}
         </span>
         <div>
-          <button onClick={() => setExpanded(!expanded)} type="button">
+          <button onClick={() => setEditing(!editing)} type="button">
             <PencilAltIcon
               className="flex-shrink-0 h-6 w-6 text-gray-600"
               aria-hidden="true"
@@ -56,7 +56,7 @@ export default function Admin({ item }) {
           </button>
         </div>
       </div>
-      {expanded && <AdminItemEdit {...item} setExpanded={setExpanded} />}
+      {editing && <AdminItemEdit {...item} setEditing={setEditing} />}
     </div>
   );
 }
