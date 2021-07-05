@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useQuery } from "urql";
 import AdminItemCreate from "./AdminItemCreate";
-import AdminItemList from "./AdminItemList";
 import AdminItem from "./AdminItem";
 import Heading from "./Heading";
 
