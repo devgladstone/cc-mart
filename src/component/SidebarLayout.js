@@ -18,7 +18,6 @@ function classNames(...classes) {
 export default function SidebarLayout({ children }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { pathname } = useLocation();
-  console.log(pathname);
 
   const navigation = [
     {
@@ -119,21 +118,19 @@ export default function SidebarLayout({ children }) {
                 </nav>
               </div>
               <div className="flex-shrink-0 flex border-t border-gray-200 p-4">
-                <a href="#" className="flex-shrink-0 group block">
-                  <div className="flex items-center">
-                    <div>
-                      <UserCircleIcon
-                        className="inline-block h-10 w-10 rounded-full"
-                        aria-hidden="true"
-                      />
-                    </div>
-                    <div className="ml-3">
-                      <p className="text-base font-medium text-gray-700 group-hover:text-gray-900">
-                        Guest user
-                      </p>
-                    </div>
+                <div className="flex items-center">
+                  <div>
+                    <UserCircleIcon
+                      className="inline-block h-10 w-10 rounded-full"
+                      aria-hidden="true"
+                    />
                   </div>
-                </a>
+                  <div className="ml-3">
+                    <p className="text-base font-medium text-gray-700 group-hover:text-gray-900">
+                      Guest user
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </Transition.Child>
@@ -157,9 +154,9 @@ export default function SidebarLayout({ children }) {
               </div>
               <nav className="mt-5 flex-1 px-2 bg-white space-y-1">
                 {navigation.map((item) => (
-                  <a
+                  <Link
+                    to={item.href}
                     key={item.name}
-                    href={item.href}
                     className={classNames(
                       item.current
                         ? "bg-gray-100 text-gray-900"
@@ -177,7 +174,7 @@ export default function SidebarLayout({ children }) {
                       aria-hidden="true"
                     />
                     {item.name}
-                  </a>
+                  </Link>
                 ))}
               </nav>
             </div>
