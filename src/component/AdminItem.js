@@ -1,10 +1,34 @@
 /* This example requires Tailwind CSS v2.0+ */
 import { PencilAltIcon, TrashIcon } from "@heroicons/react/solid";
 import { useState } from "react";
-import AdminItemEdit from "./AdminItemEdit"
+import AdminItemEdit from "./AdminItemEdit";
+import { useMutation } from "urql";
+
+const DELETE_ITEM = `
+mutation ($id: Int!) {
+  delete_item_by_pk(id: $id) {
+    id
+  }
+}
+`;
 
 export default function Admin({ item }) {
   const [expanded, setExpanded] = useState(false);
+  const [, executeDelete] = useMutation(DELETE_ITEM);
+
+  const onDelete = async () => {
+    let confirmed = window.confirm("Are you sure you want to delete this item?");
+    if (confirmed) {
+      console.log(confirmed);
+      try {
+        await executeDelete({
+          id: item.id,
+        });
+      } catch (err) {
+        console.error(err);
+      }
+    }
+  };
 
   return (
     <div className="bg-white shadow overflow-hidden sm:rounded-lg">
@@ -24,7 +48,7 @@ export default function Admin({ item }) {
               aria-hidden="true"
             />
           </button>
-          <button onClick={() => setExpanded(!expanded)} type="button">
+          <button onClick={onDelete} type="button">
             <TrashIcon
               className="flex-shrink-0 h-6 w-6 text-red-600 ml-4"
               aria-hidden="true"
@@ -32,9 +56,7 @@ export default function Admin({ item }) {
           </button>
         </div>
       </div>
-      {expanded && (
-        <AdminItemEdit {...item} setExpanded={setExpanded} />
-      )}
+      {expanded && <AdminItemEdit {...item} setExpanded={setExpanded} />}
     </div>
   );
 }
