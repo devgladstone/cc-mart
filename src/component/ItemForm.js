@@ -91,7 +91,6 @@ export default function ItemForm({ state, setState, onCancel, onSubmit }) {
                     name="description"
                     rows={3}
                     className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-300 rounded-md"
-                    defaultValue={""}
                   />
                 </div>
               </div>
