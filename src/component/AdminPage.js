@@ -6,8 +6,7 @@ import Heading from "./Heading";
 
 export default function AdminPage() {
   const [isCreating, setIsCreating] = useState(false);
-  const [isEditing, setIsEditing] = useState(false);
-  const [result, reexecuteQuery] = useQuery({
+  const [result] = useQuery({
     query: `
       query {
         item {

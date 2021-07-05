@@ -17,7 +17,7 @@ export default function UserItem({ item, setOpen, setCart }) {
         <img
           className="w-32 h-32 flex-shrink-0 mx-auto bg-black text-white rounded-full"
           src={item.img_url || "https://covalentcareers3.s3-accelerate.amazonaws.com/media/images/company/CovalentCreative_Linkedin-Profile-Image.png"}
-          alt="Image not found"
+          alt="Not found"
         />
         <h3 className="mt-6 text-gray-900 text-sm font-medium">{item.name}</h3>
         <dl className="mt-1 flex-grow flex flex-col justify-between">

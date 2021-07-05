@@ -15,7 +15,7 @@ export default function UserPage() {
 
   const [open, setOpen] = useState(false);
 
-  const [result, reexecuteQuery] = useQuery({
+  const [result] = useQuery({
     query: `
       query {
         item {
