@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useQuery } from "urql";
+import Heading from "./Heading";
 import UserItemList from "./UserItemList";
 import CartSlideOver from "./CartSlideOver";
 
@@ -22,6 +23,7 @@ export default function UserPage() {
           name
           description
           cost
+          img_url
         }
       }
     `,
@@ -33,7 +35,8 @@ export default function UserPage() {
   if (error) return <p>Oh no... {error.message}</p>;
 
   return (
-    <div>
+    <div className="space-y-2">
+      <Heading text={"Browse items"} setState={setOpen} />
       <CartSlideOver cart={cart} open={open} setOpen={setOpen} />
       <UserItemList
         items={data.item}
