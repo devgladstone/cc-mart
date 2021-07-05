@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { useQuery } from "urql";
-import CreateForm from "./CreateForm";
+import AdminItemCreate from "./AdminItemCreate";
 import AdminItemList from "./AdminItemList";
+import AdminItem from "./AdminItem";
+import Heading from "./Heading";
 
 export default function AdminPage() {
   const [isCreating, setIsCreating] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
   const [result, reexecuteQuery] = useQuery({
     query: `
       query {
@@ -13,6 +16,7 @@ export default function AdminPage() {
           name
           description
           cost
+          img_url
         }
       }
     `,
@@ -24,20 +28,19 @@ export default function AdminPage() {
   if (error) return <p>Oh no... {error.message}</p>;
 
   return (
-    <div>
+    <div className="space-y-4">
+      <Heading
+        text="Add items"
+        buttonText="Add new item"
+        setState={setIsCreating}
+      />
       <div className="pb-4">
-        {isCreating ? (
-          <CreateForm setIsCreating={setIsCreating} />
-        ) : (
-          <button
-            className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-500 hover:bg-blue-600"
-            onClick={() => setIsCreating(true)}
-          >
-            Create new item
-          </button>
-        )}
+        {isCreating && <AdminItemCreate setIsCreating={setIsCreating} />}
       </div>
-      <AdminItemList items={data.item}></AdminItemList>
+      {/* <AdminItemList items={data.item}></AdminItemList> */}
+      {data.item.map((item) => (
+        <AdminItem key={item.id} item={item} />
+      ))}
     </div>
   );
 }
