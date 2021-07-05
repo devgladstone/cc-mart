@@ -36,7 +36,6 @@ export default function AdminPage() {
       <div className="pb-4">
         {isCreating && <AdminItemCreate setIsCreating={setIsCreating} />}
       </div>
-      {/* <AdminItemList items={data.item}></AdminItemList> */}
       {data.item.map((item) => (
         <AdminItem key={item.id} item={item} />
       ))}
