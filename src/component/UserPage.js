@@ -36,7 +36,11 @@ export default function UserPage() {
 
   return (
     <div className="space-y-2">
-      <Heading text={"Browse items"} setState={setOpen} />
+      <Heading
+        text="Browse items"
+        buttonText="View Cart"
+        setState={setOpen}
+      />
       <CartSlideOver cart={cart} open={open} setOpen={setOpen} />
       <UserItemList
         items={data.item}
