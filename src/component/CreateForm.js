@@ -81,7 +81,6 @@ export default function CreateForm({ setIsCreating }) {
                         type="text"
                         name="name"
                         id="name"
-                        autoComplete="given-name"
                         className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
                       />
                     </div>
@@ -105,7 +104,6 @@ export default function CreateForm({ setIsCreating }) {
                         type="number"
                         name="cost"
                         id="cost"
-                        autoComplete="cost"
                         className="flex-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"
                       />
                     </div>
@@ -125,7 +123,6 @@ export default function CreateForm({ setIsCreating }) {
                         type="text"
                         name="img_url"
                         id="img_url"
-                        autoComplete="family-name"
                         className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
                       />
                     </div>
