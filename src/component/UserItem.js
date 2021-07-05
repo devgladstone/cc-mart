@@ -11,7 +11,6 @@ export default function UserItem({ item, setOpen, setCart }) {
 
   return (
     <li
-      key={item.id}
       className="col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200"
     >
       <div className="flex-1 flex flex-col p-8">
