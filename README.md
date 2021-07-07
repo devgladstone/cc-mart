@@ -1,70 +1,44 @@
-# Getting Started with Create React App
+# CC Mart
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Problem: Building basic e-commerce flow
 
-## Available Scripts
+This solution consists of a front-end heavy React app and a GraphQL API for the backend. I focused a lot on the front-end UI by utilizing Tailwind and it's component library, and used React to handle state management and DOM manipulation. For the sake of time, admin and users were ignored, and data was exchanged directly between the client and database, which I set up as a GraphQL API by using Hasura, but with additional time I would implement an auth server for users and set up permissions on Hasura to control access, as well as other features mentioned later.
 
-In the project directory, you can run:
+## Getting Started
 
-### `npm start`
+### Front-end - [CC Mart](https://clever-babbage-62ec2b.netlify.app/) (Hosted on Netlify)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Clone repo
+- `npm install`
+- `npm start`
+- Use [Hasura Console](https://cc-mart-graphql.herokuapp.com/console/api/api-explorer) to make changes to database and schema
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Dependencies:
+- [react-router-dom](https://github.com/ReactTraining/react-router/tree/master/packages/react-router-dom) - Declarative routing for React
+- [urql](https://github.com/FormidableLabs/urql) - GraphQL client to facilitate queries to GraphQL and caching
+- [tailwind](https://tailwindcss.com/) - A utility-first CSS framework; also TailwindUI for component library
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Future improvements/features
+- Client
+	- Users
+		- Implementing authentication and authorization for admin and users
+		- Implementing users and user data
+	- Forms
+		- `react-hook-forms` - helps with validation and re-rendering speed
+	- Browse items user page
+		- Individual item page
+		- Pagination
+		- Filter by categories
+		- Expand description
+		- Abstract modal to incorporate different actions - create, update, delete, and errors
+	- Add items page
+		- Add image upload functionality
+	- Cart
+		- Persisting cart information
+	- Checkout
+		- Encrypting billing information
+		- Adding other payment options like PayPal
+		- Implementing processing of payment on submit
+- Backend
+	- Adding roles and permissions in Hasura to controll access to data based on the user
+	- Implementing an auth server
