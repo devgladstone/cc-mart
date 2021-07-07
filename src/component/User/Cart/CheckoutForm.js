@@ -16,7 +16,6 @@ export default function CheckoutForm({ setCheckingout, setModal }) {
     year: "",
     code: "",
   });
-  const [isLoading, setLoading] = useState(false);
 
   const onChange = ({ target }) =>
     setState({

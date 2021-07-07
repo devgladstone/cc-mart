@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useQuery } from "urql";
 import AdminItemCreate from "./AdminItemCreate";
 import AdminItem from "./AdminItem";
-import Heading from "./Heading";
-import Modal from "./Modal";
+import Heading from "../Layout/Heading";
+import Modal from "../Layout/Modal";
 
 export default function AdminPage() {
   const [isCreating, setIsCreating] = useState(false);

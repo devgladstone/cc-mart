@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useQuery } from "urql";
-import Heading from "./Heading";
+import Heading from "../Layout/Heading";
 import UserItemList from "./UserItemList";
-import CartSlideOver from "./CartSlideOver";
+import CartSlideOver from "./Cart/CartSlideOver";
 
 export default function UserPage() {
   const [cart, setCart] = useState({

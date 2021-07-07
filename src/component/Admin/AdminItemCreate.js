@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useMutation } from "urql";
-import Loading from "./Loading";
+import Loading from "../Layout/Loading";
 import ItemForm from "./ItemForm";
 
 const CREATE_ITEM = `

@@ -6,14 +6,6 @@ const formatter = new Intl.NumberFormat("en-US", {
 });
 
 export default function UserItem({ item, setOpen, setCart }) {
-  // const addToCart = () => {
-  //   setCart({
-  //     ...cart,
-  //     list: cart.list.concat({ ...item, quantity: 1 }),
-  //   });
-  //   setOpen(true);
-  // };
-
   const addToCart = (id) => {
     setCart((cart) => {
       const hasDuplicate = cart.ids.has(id);
@@ -27,25 +19,6 @@ export default function UserItem({ item, setOpen, setCart }) {
           : [...cart.list, { ...item, quantity: 1 }],
         ids: new Set(cart.ids).add(id),
       };
-      // let hasDuplicate = false;
-
-      // cart.list.map(item => {
-
-      // })
-
-      // const list = cart.list.map((cartItem) => {
-      //   if (id === cartItem.id) {
-      //     hasDuplicate = true;
-      //     return { ...cartItem, quantity: cartItem.quantity + 1 };
-      //   } else {
-      //     return cartItem;
-      //   }
-      // });
-      // return {
-      //   ...cart,
-      //   list: hasDuplicate ? list : cart.list.concat({ ...item, quantity: 1 }),
-      //   // list: hasDuplicate ? list : [...cart.list, { ...item, quantity: 1 }],
-      // };
     });
     setOpen(true);
   };

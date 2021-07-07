@@ -1,11 +1,10 @@
-/* This example requires Tailwind CSS v2.0+ */
 import { Fragment, useState, useEffect } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XIcon } from "@heroicons/react/outline";
 import { ShoppingCartIcon } from "@heroicons/react/solid";
 import CartItem from "./CartItem";
 import CheckoutForm from "./CheckoutForm";
-import Modal from "./Modal";
+import Modal from "../../Layout/Modal";
 
 const formatter = new Intl.NumberFormat("en-US", {
   style: "currency",

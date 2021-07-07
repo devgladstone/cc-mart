@@ -1,4 +1,4 @@
-import { PencilAltIcon, TrashIcon } from "@heroicons/react/solid";
+import { TrashIcon } from "@heroicons/react/solid";
 
 const formatter = new Intl.NumberFormat("en-US", {
   style: "currency",
