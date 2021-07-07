@@ -6,13 +6,9 @@ import CartSlideOver from "./CartSlideOver";
 
 export default function UserPage() {
   const [cart, setCart] = useState({
-    name: "",
-    description: "",
-    cost: 0,
-    img_url: "",
-    quantity: 0,
+    list: [],
+    ids: new Set(),
   });
-
   const [open, setOpen] = useState(false);
 
   const [result] = useQuery({
@@ -36,12 +32,14 @@ export default function UserPage() {
 
   return (
     <div className="space-y-2">
-      <Heading
-        text="Browse items"
-        buttonText="View Cart"
-        setState={setOpen}
+      <Heading text="Browse items" buttonText="View Cart" setState={setOpen} />
+      <CartSlideOver
+        cartList={cart.list}
+        open={open}
+        setOpen={setOpen}
+        cart={cart}
+        setCart={setCart}
       />
-      <CartSlideOver cart={cart} open={open} setOpen={setOpen} />
       <UserItemList
         items={data.item}
         setOpen={setOpen}

@@ -1,10 +1,35 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { Fragment, useState } from "react";
+import { Fragment, useState, useEffect } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XIcon } from "@heroicons/react/outline";
+import { ShoppingCartIcon } from "@heroicons/react/solid";
 import CartItem from "./CartItem";
+import CheckoutForm from "./CheckoutForm";
+import Modal from "./Modal";
 
-export default function CartSlideOver({ cart, open, setOpen }) {
+const formatter = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+});
+
+export default function CartSlideOver({
+  cartList,
+  open,
+  setOpen,
+  cart,
+  setCart,
+}) {
+  const total = cart.list.reduce((accum, currentValue) => {
+    return currentValue.cost * currentValue.quantity + accum;
+  }, 0);
+
+  const [checkingout, setCheckingout] = useState(false);
+  const [modal, setModal] = useState(false);
+
+  useEffect(() => {
+    setCheckingout(false);
+  }, [open]);
+
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog
@@ -56,15 +81,45 @@ export default function CartSlideOver({ cart, open, setOpen }) {
                     </div>
                   </div>
                   <div className="mt-6 relative flex-1 px-4 sm:px-6">
-                    {/* Replace with your content */}
-                    {/* <div className="absolute inset-0 px-4 sm:px-6">
-                      <div
-                        className="h-full border-2 border-dashed border-gray-200"
-                        aria-hidden="true"
+                    <Modal
+                      open={modal}
+                      setOpen={setModal}
+                      text="Order placed successfully!"
+                      href="/"
+                      buttonText="Continue"
+                    ></Modal>
+                    {checkingout ? (
+                      <CheckoutForm
+                        setCheckingout={setCheckingout}
+                        setModal={setModal}
                       />
-                    </div> */}
-                    {/* /End replace */}
-                    <CartItem cart={cart}></CartItem>
+                    ) : cartList.length > 0 ? (
+                      <>
+                        {cartList.map((item) => (
+                          <CartItem
+                            key={item.id}
+                            setCart={setCart}
+                            setCheckingout={setCheckingout}
+                            {...item}
+                          ></CartItem>
+                        ))}
+                        <div className="mt-6 w-full flex items-center justify-between">
+                          <span>Total: {formatter.format(total)}</span>
+                          <button
+                            onClick={() => setCheckingout(true)}
+                            className="inline-flex justify-between items-center p-2.5  shadow-sm text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-600"
+                          >
+                            <ShoppingCartIcon
+                              className="w-5 h-5 text-white"
+                              aria-hidden="true"
+                            />
+                            <span className="ml-1.5 text-md">Checkout</span>
+                          </button>
+                        </div>
+                      </>
+                    ) : (
+                      <p>Your cart is empty.</p>
+                    )}
                   </div>
                 </div>
               </div>

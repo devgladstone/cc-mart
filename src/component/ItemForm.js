@@ -9,8 +9,6 @@ export default function ItemForm({ state, setState, onCancel, onSubmit }) {
     <form className="space-y-8" onSubmit={onSubmit}>
       <div className="space-y-8">
         <div>
-
-
           <div>
             <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
               <div className="sm:col-span-2">
