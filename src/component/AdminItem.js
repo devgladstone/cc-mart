@@ -1,4 +1,3 @@
-/* This example requires Tailwind CSS v2.0+ */
 import { PencilAltIcon, TrashIcon } from "@heroicons/react/solid";
 import { useState } from "react";
 import AdminItemEdit from "./AdminItemEdit";
@@ -12,18 +11,21 @@ mutation ($id: Int!) {
 }
 `;
 
-export default function Admin({ item }) {
+export default function Admin({ item, setModal }) {
   const [editing, setEditing] = useState(false);
   const [, executeDelete] = useMutation(DELETE_ITEM);
 
   const onDelete = async () => {
-    let confirmed = window.confirm("Are you sure you want to delete this item?");
+    let confirmed = window.confirm(
+      "Are you sure you want to delete this item?"
+    );
     if (confirmed) {
       console.log(confirmed);
       try {
         await executeDelete({
           id: item.id,
         });
+        setModal(true);
       } catch (err) {
         console.error(err);
       }
@@ -37,9 +39,6 @@ export default function Admin({ item }) {
           <h3 className="text-lg leading-6 font-medium text-gray-900">
             {item.name}
           </h3>
-          {/* <h3 className="pl-2 text-sm leading-6 font-medium text-gray-600 max-w-0 sm:max-w-xs lg:max-w-md truncate">
-            {description}
-          </h3> */}
         </span>
         <div>
           <button onClick={() => setEditing(!editing)} type="button">
@@ -56,7 +55,9 @@ export default function Admin({ item }) {
           </button>
         </div>
       </div>
-      {editing && <AdminItemEdit {...item} setEditing={setEditing} />}
+      {editing && (
+        <AdminItemEdit {...item} setEditing={setEditing} setModal={setModal} />
+      )}
     </div>
   );
 }

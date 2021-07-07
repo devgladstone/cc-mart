@@ -3,9 +3,11 @@ import { useQuery } from "urql";
 import AdminItemCreate from "./AdminItemCreate";
 import AdminItem from "./AdminItem";
 import Heading from "./Heading";
+import Modal from "./Modal";
 
 export default function AdminPage() {
   const [isCreating, setIsCreating] = useState(false);
+  const [modal, setModal] = useState(false);
   const [result] = useQuery({
     query: `
       query {
@@ -27,16 +29,24 @@ export default function AdminPage() {
 
   return (
     <div className="space-y-4">
+      <Modal
+        open={modal}
+        setOpen={setModal}
+        text="Success!"
+        buttonText="Continue"
+      ></Modal>
       <Heading
         text="Add items"
         buttonText="Add new item"
         setState={setIsCreating}
       />
       <div className="pb-4">
-        {isCreating && <AdminItemCreate setIsCreating={setIsCreating} />}
+        {isCreating && (
+          <AdminItemCreate setIsCreating={setIsCreating} setModal={setModal} />
+        )}
       </div>
       {data.item.map((item) => (
-        <AdminItem key={item.id} item={item} />
+        <AdminItem key={item.id} item={item} setModal={setModal} />
       ))}
     </div>
   );

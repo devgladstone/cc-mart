@@ -19,11 +19,12 @@ export default function AdminItemEdit({
   cost,
   img_url,
   setEditing,
+  setModal,
 }) {
   const [state, setState] = useState({
     name: name,
     description: description,
-    cost: Number(cost.slice(1)),
+    cost: cost,
     img_url: img_url,
   });
   const [isLoading, setLoading] = useState(false);
@@ -35,7 +36,7 @@ export default function AdminItemEdit({
     setState({
       name: name,
       description: description,
-      cost: Number(cost.slice(1)),
+      cost: cost,
       img_url: img_url,
     });
   };
@@ -50,10 +51,11 @@ export default function AdminItemEdit({
           modified_on: new Date().toISOString(),
         },
       });
+      setModal(true);
       setEditing(false);
       setLoading(false);
-      alert("Item updated!");
     } catch (err) {
+      setEditing(false);
       setLoading(false);
       alert("Error updating!");
     }

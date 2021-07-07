@@ -11,7 +11,7 @@ const CREATE_ITEM = `
   }
 `;
 
-export default function AdminItemCreate({ setIsCreating }) {
+export default function AdminItemCreate({ setIsCreating, setModal }) {
   const [state, setState] = useState({
     name: "",
     cost: 0,
@@ -43,9 +43,9 @@ export default function AdminItemCreate({ setIsCreating }) {
           img_url: state.img_url,
         },
       });
+      setModal(true);
       setIsCreating(false);
       setLoading(false);
-      alert("Item saved!");
     } catch (err) {
       setLoading(false);
       alert("Error adding!");
